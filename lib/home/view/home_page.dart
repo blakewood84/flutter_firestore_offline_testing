@@ -12,6 +12,7 @@ class HomePage extends StatelessWidget {
             width: constraints.maxWidth,
             height: constraints.maxHeight,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
                   onPressed: () {},
