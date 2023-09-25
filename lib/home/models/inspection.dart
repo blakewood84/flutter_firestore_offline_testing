@@ -19,6 +19,12 @@ class Inspection {
         date = null,
         name = null;
 
+  Map<String, dynamic> toMap() => {
+        'approved': approved,
+        'date': date,
+        'name': name,
+      };
+
   factory Inspection.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snapshot) {
     final data = snapshot.data()!;
     final approved = data['approved'] as bool;

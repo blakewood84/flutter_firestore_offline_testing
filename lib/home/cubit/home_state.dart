@@ -10,6 +10,14 @@ class HomeState extends Equatable {
 
   const HomeState.initial() : newInspection = null;
 
+  HomeState copyWith({
+    Inspection? newInspection,
+  }) {
+    return HomeState(
+      newInspection: newInspection ?? this.newInspection,
+    );
+  }
+
   @override
   List<Object?> get props => [newInspection];
 }
