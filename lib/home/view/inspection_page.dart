@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:offline_form/home/cubit/home_cubit.dart';
 
+import 'dart:developer' as devtools;
+
 enum Approval { approved, denied, none }
 
 class InspectionPage extends StatefulWidget {
@@ -45,6 +47,8 @@ class _InspectionPageState extends State<InspectionPage> {
   Widget build(BuildContext context) {
     final inspection = context.select((HomeCubit cubit) => cubit.state.newInspection);
 
+    devtools.log('Inspection: $inspection');
+
     if (inspection == null) {
       return const Material(
         child: Center(
@@ -85,7 +89,7 @@ class _InspectionPageState extends State<InspectionPage> {
                 children: [
                   Expanded(
                     child: TextField(
-                      controller: _dateController..text = inspection.date?.toString() ?? '',
+                      controller: _dateController..text = inspection.date?.toDate().toString() ?? '',
                       readOnly: true,
                       decoration: const InputDecoration(
                         label: Text('Date'),
