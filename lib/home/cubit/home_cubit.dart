@@ -34,4 +34,10 @@ class HomeCubit extends Cubit<HomeState> {
       );
     });
   }
+
+  void resetInspection() => emit(
+        state.copyWith(
+          newInspection: null,
+        ),
+      );
 }
