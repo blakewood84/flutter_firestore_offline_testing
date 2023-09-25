@@ -18,6 +18,17 @@ class HomeCubit extends Cubit<HomeState> {
   final CollectionReference<Map<String, dynamic>> _inspectionRef;
 
   Future<void> createInspection() async {
+    final lastUnApprovedInspection = await _inspectionRef.where('approved', isNull: true).get();
+    if (lastUnApprovedInspection.docs.isNotEmpty) {
+      final inspection = Inspection.fromSnapshot(lastUnApprovedInspection.docs.first);
+      emit(
+        state.copyWith(
+          newInspection: inspection,
+        ),
+      );
+      return;
+    }
+
     const newInspection = Inspection.empty();
     _inspectionRef.add(newInspection.toMap()).then((docRef) async {
       devtools.log('New Inspection Added!');

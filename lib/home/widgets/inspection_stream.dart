@@ -7,7 +7,7 @@ class InspectionStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: FirebaseFirestore.instance.collection('inspections').snapshots(),
+      stream: FirebaseFirestore.instance.collection('inspections').where('approved', isNull: false).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData || snapshot.hasError) {
           return const SizedBox.shrink();

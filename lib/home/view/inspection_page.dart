@@ -71,7 +71,8 @@ class _InspectionPageState extends State<InspectionPage> {
         width: double.infinity,
         child: Column(
           children: [
-            TextField(
+            TextFormField(
+              initialValue: inspection.name,
               decoration: const InputDecoration(
                 label: Text('Name'),
               ),
@@ -84,7 +85,7 @@ class _InspectionPageState extends State<InspectionPage> {
                 children: [
                   Expanded(
                     child: TextField(
-                      controller: _dateController,
+                      controller: _dateController..text = inspection.date?.toString() ?? '',
                       readOnly: true,
                       decoration: const InputDecoration(
                         label: Text('Date'),

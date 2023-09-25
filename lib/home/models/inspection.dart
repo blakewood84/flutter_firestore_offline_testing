@@ -1,9 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart' show DocumentSnapshot, Timestamp;
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart' show immutable;
 
 @immutable
-class Inspection {
+class Inspection extends Equatable {
   const Inspection({
     required this.id,
     required this.approved,
@@ -41,4 +42,12 @@ class Inspection {
       name: name,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        id,
+        approved,
+        date,
+        name,
+      ];
 }
