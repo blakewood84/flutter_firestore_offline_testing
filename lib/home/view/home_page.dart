@@ -20,31 +20,33 @@ class HomePage extends StatelessWidget {
                 height: constraints.maxHeight,
                 child: Column(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: Colors.black,
-                            width: 1,
-                          ),
-                        ),
-                      ),
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => BlocProvider.value(
-                              value: BlocProvider.of<HomeCubit>(context),
-                              child: const InspectionPage(),
+                    Builder(builder: (bContext) {
+                      return Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: const BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: Colors.black,
+                              width: 1,
                             ),
                           ),
                         ),
-                        child: const Text(
-                          'Create New Inspection',
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => BlocProvider.value(
+                                value: BlocProvider.of<HomeCubit>(bContext),
+                                child: const InspectionPage(),
+                              ),
+                            ),
+                          ),
+                          child: const Text(
+                            'Create New Inspection',
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    }),
                     const Expanded(
                       child: InspectionStream(),
                     ),
