@@ -27,9 +27,9 @@ class Inspection {
 
   factory Inspection.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snapshot) {
     final data = snapshot.data()!;
-    final approved = data['approved'] as bool;
-    final date = data['date'] as Timestamp;
-    final name = data['name'] as String;
+    final approved = data['approved'] as bool?;
+    final date = data['date'] as Timestamp?;
+    final name = data['name'] as String?;
 
     return Inspection(
       approved: approved,

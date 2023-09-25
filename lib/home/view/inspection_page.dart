@@ -37,6 +37,12 @@ class _InspectionPageState extends State<InspectionPage> {
         title: const Text(
           'New Inspection',
         ),
+        leading: BackButton(
+          onPressed: () {
+            context.read<HomeCubit>().resetInspection();
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: const SizedBox(
         height: double.infinity,
