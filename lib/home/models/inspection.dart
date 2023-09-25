@@ -5,6 +5,7 @@ import 'package:flutter/material.dart' show immutable;
 @immutable
 class Inspection {
   const Inspection({
+    required this.id,
     required this.approved,
     required this.date,
     required this.name,
@@ -13,9 +14,11 @@ class Inspection {
   final bool? approved;
   final Timestamp? date;
   final String? name;
+  final String? id;
 
   const Inspection.empty()
-      : approved = null,
+      : id = null,
+        approved = null,
         date = null,
         name = null;
 
@@ -32,6 +35,7 @@ class Inspection {
     final name = data['name'] as String?;
 
     return Inspection(
+      id: snapshot.id,
       approved: approved,
       date: date,
       name: name,

@@ -40,4 +40,10 @@ class HomeCubit extends Cubit<HomeState> {
           newInspection: null,
         ),
       );
+
+  void updateValue(String key, Object? value) {
+    _inspectionRef.doc(state.newInspection?.id).update({
+      key: value,
+    });
+  }
 }
