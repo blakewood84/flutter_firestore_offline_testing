@@ -45,11 +45,14 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  void resetInspection() => emit(
-        state.copyWith(
-          newInspection: null,
-        ),
-      );
+  void resetInspection() {
+    devtools.log('reset Inspection!');
+    emit(
+      state.copyWith(
+        newInspection: null,
+      ),
+    );
+  }
 
   void updateValue(String key, Object? value) {
     _inspectionRef.doc(state.newInspection?.id).update({
@@ -71,6 +74,7 @@ class HomeCubit extends Cubit<HomeState> {
     final completer = Completer<Inspection?>();
     const newInspection = Inspection.empty();
     try {
+      devtools.log('Creating a new inspection!');
       _inspectionRef.add(newInspection.toMap()).then(
         (docRef) async {
           devtools.log('New Inspection Added!');

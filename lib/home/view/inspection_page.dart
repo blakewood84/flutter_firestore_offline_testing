@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:offline_form/home/cubit/home_cubit.dart';
 
-import 'dart:developer' as devtools;
-
 enum Approval { approved, denied, none }
 
 class InspectionPage extends StatefulWidget {
@@ -28,6 +26,13 @@ class _InspectionPageState extends State<InspectionPage> {
     context.read<HomeCubit>().createInspection();
   }
 
+  @override
+  void dispose() {
+    _dateController.dispose();
+    _segmentNotifier.dispose();
+    super.dispose();
+  }
+
   void _showDatePicker() async {
     final picked = await showDatePicker(
       context: context,
@@ -46,8 +51,6 @@ class _InspectionPageState extends State<InspectionPage> {
   @override
   Widget build(BuildContext context) {
     final inspection = context.select((HomeCubit cubit) => cubit.state.newInspection);
-
-    devtools.log('Inspection: $inspection');
 
     if (inspection == null) {
       return const Material(
